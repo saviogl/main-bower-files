@@ -114,7 +114,12 @@ Install this plugin with the following command:
 npm install --save-dev main-bower-files
 ```
 
-Once that's done, you have available a **mbfiles** utility. In your package.json add a new script under "scripts" key:
+Once that's done, you have available a **mbfiles** utility that can be executed this way:
+```bash
+mbfiles [options] destination
+```
+
+In your package.json add a few lines under "scripts" key:
 
 ```js
 "scripts": {
@@ -130,6 +135,16 @@ On the command line type:
 ```js
 npm run copyBower
 ```
+
+This utility currently supports the following options:
+
+- ***--basepath***
+- ***--bowerJsonPath***
+- ***--bowerRcPath***
+- ***--bowerDirPath***
+- ***--debug***, ***-d***
+- ***--checkExistence***, ***-c***
+- ***--filter***, ***-f***
 
 ## Options
 
