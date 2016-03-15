@@ -20,8 +20,8 @@ files.forEach(function(file) {
 function defineDestPath(args) {
   if (!args.length || args.length > 1) {
     console.log('RangeError:: Invalid number of arguments [' + args.length + ']');
-    console.log('RangeError:: \'mbfiles [options] [destination]\'');
-    console.log('RangeError:: \'mbfiles src/js\'');
+    console.log('RangeError:: mbfiles [options] [destination]');
+    console.log('RangeError:: mbfiles src/js');
     process.exit(1);
   }
 
@@ -30,7 +30,7 @@ function defineDestPath(args) {
   try {
     var stats = fs.statSync(path);
     if (!stats.isDirectory()) {
-      console.log('TypeError:: \'' + path + '\' must be a directory not a file');
+      console.log('TypeError:: "' + path + ' must be a directory not a file');
       process.exit(1);
     }
   } catch (e) {
@@ -44,9 +44,18 @@ function defineOptions(args) {
   var options = {};
 
   if (args.debug || args.d) options.debugging = args.debug || args.d;
-  if (args.path || args.p) options.paths = args.path || args.p;
   if (args.checkExistence || args.c) options.checkExistence = args.checkExistence || args.c;
   if (args.filter || args.f) options.filter = args.filter || args.f;
+  
+  options.paths = args.basepath || {};
+  if (typeof options.paths === 'object') {
+    if (args.bowerJsonPath) 
+      options.paths.bowerJson = args.bowerJsonPath;
+    if (args.bowerRcPath)
+      options.paths.bowerrc = args.bowerRcPath;
+    if (args.bowerDirPath)
+      options.paths.bowerDirectory = args.bowerDirPath;
+  }
 
   return options;
 }
