@@ -5,6 +5,7 @@ main-bower-files
 - [Usage](#usage)
     - [Usage with gulp](#usage-with-gulp)
     - [Usage with grunt](#usage-with-grunt)
+    - [Usage with npm](#usage-with-npm)
 - [Options](#options)
     - [Overrides Options](#overrides-options)
         - [main](#main)
@@ -105,6 +106,30 @@ grunt.initConfig({
     }
 });
 ````
+
+### Usage with npm
+Install this plugin with the following command:
+
+```bash
+npm install --save-dev main-bower-files
+```
+
+Once that's done, you have available a **mbfiles** utility. In your package.json add a new script under "scripts" key:
+
+```js
+"scripts": {
+    ...
+    "copyJS": "mbfiles --filter=**/*.js dist/js",
+    "copyCSS": "mbfiles --filter=**/*.css dist/css",
+    "copyBower": "npm run copyJS && npm run copyCSS" 
+}
+```
+
+On the command line type:
+
+```js
+npm run copyBower
+```
 
 ## Options
 
